@@ -71,7 +71,7 @@ class Kue {
     }
 
     if (delay) {
-      job.delay(ttl)
+      job.delay(delay)
     }
 
     // allow custom functions to be called on the job, e.g. backoff
