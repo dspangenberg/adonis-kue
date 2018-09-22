@@ -56,7 +56,7 @@ class Kue {
   * @returns {Object}          Kue job instance
   * @public
   */
-  dispatch (key, data, { priority = 'normal', attempts = 1, ttl, remove = true, jobFn = () => {} } = {}) {
+  dispatch (key, data, { priority = 'normal', attempts = 1, ttl, delay, remove = true, jobFn = () => {} } = {}) {
     if (typeof key !== 'string') {
       throw new Error(`Expected job key to be of type string but got <${typeof key}>.`)
     }
@@ -68,6 +68,10 @@ class Kue {
 
     if (ttl) {
       job.ttl(ttl)
+    }
+
+    if (delay) {
+      job.delay(ttl)
     }
 
     // allow custom functions to be called on the job, e.g. backoff
