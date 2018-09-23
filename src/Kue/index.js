@@ -84,10 +84,6 @@ class Kue {
       }
     })
 
-    if (delay) {
-      job.promote()
-    }
-
     // Add promise proxy on job for complete event
     job.result = new Promise((resolve, reject) => {
       job.on('complete', result => {
@@ -131,6 +127,8 @@ class Kue {
 
       // Track currently registered jobs in memory
       this.registeredJobs.push(Job)
+
+      this.instance.promote()
 
       // Register job handler
       this.instance.process(Job.key, Job.concurrency, (job, done) => {
