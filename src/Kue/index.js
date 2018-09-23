@@ -84,6 +84,10 @@ class Kue {
       }
     })
 
+    if (delay) {
+      jobs.promote()
+    }
+
     // Add promise proxy on job for complete event
     job.result = new Promise((resolve, reject) => {
       job.on('complete', result => {
