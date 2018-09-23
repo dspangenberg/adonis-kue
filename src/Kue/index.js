@@ -85,7 +85,7 @@ class Kue {
     })
 
     if (delay) {
-      jobs.promote()
+      job.promote()
     }
 
     // Add promise proxy on job for complete event
